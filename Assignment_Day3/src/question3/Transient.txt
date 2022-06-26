@@ -1,0 +1,20 @@
+****************  Transient Key Word  ****************
+
+- transient is a Modifier Application Only for Variables.
+- At the Time of Serialization if we don't want to Save the Value of a Particular Variable to Meet Security Constraints then we should go for transient Key Word.
+- At the Time of Serialization JVM Ignores Original Value of transient Variables and Save Default Value to the File
+- Hence transient Means Not to Serialize.
+
+
+
+****************  static vs transient  ****************
+
+- Static Variables are not part of Object State and Hence they won't Participate in Serialization.
+- Due to this Declaring a Static Variable as transient there is No Use of impact.
+
+
+
+****************  final vs transient  ****************
+
+- final Variables will be participated in Serialization Directly by their Values.
+- Due to this declaring a final Variable as transient there is No Use or impact.
