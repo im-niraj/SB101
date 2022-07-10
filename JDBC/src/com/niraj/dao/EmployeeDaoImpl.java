@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.niraj.bean.Employee;
+import com.niraj.exception.EmployeeException;
 import com.niraj.utility.DBUtility;
 
 public class EmployeeDaoImpl implements EmployeeDao {
@@ -42,5 +45,35 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		}
 		return message;
 	}
+
+	@Override
+	public List<Employee> getAllData() throws EmployeeException {
+		List<Employee> list = new ArrayList<>();
+		
+		try(conn) {
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM employee");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String n = rs.getString("name");
+				String ad = rs.getString("address");
+				int salary = rs.getInt("salary");
+				
+				Employee employee = new Employee(id, n, ad, salary);
+				list.add(employee);
+			}
+			
+			if(list.size() <= 0) {
+				System.out.println("No record available..");
+			}
+			
+		} catch (SQLException e) {
+			throw new EmployeeException(e.getMessage());
+		}
+		
+		return list;
+	}
+
+	
 
 }

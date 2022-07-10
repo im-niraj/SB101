@@ -32,8 +32,6 @@ public class InsertEmployeeRecordUseCase {
 		String message = dao.insertEmployeeDetils(employee);
 		
 		System.out.println(message);
-		
-		
 
 	}
 
