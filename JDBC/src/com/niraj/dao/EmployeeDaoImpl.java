@@ -74,6 +74,33 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return list;
 	}
 
+	@Override
+	public Employee getEmployeeData(int id) throws EmployeeException {
+		Employee emp = null;
+		
+		try(conn) {
+			PreparedStatement ps = conn.prepareStatement("select * from employee where id=?");
+			ps.setInt(1, id);
+		
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				int ids = rs.getInt("id");
+				String n = rs.getString("name");
+				String a = rs.getString("address");
+				int s= rs.getInt("salary");
+				emp = new Employee(ids,n,a,s);
+			}
+			else {
+				throw new EmployeeException("Employee is not available for id :"+id);
+			}
+			
+		} catch (SQLException e) {
+			throw new EmployeeException(e.getMessage());
+		}
+		
+		return emp;
+	}
+
 	
 
 }

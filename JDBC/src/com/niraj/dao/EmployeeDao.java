@@ -12,4 +12,7 @@ public interface EmployeeDao {
 	
 	// get all data of employee table
 	public List<Employee> getAllData() throws EmployeeException;
+	
+	//get employee record with id
+	public Employee getEmployeeData(int id) throws EmployeeException;
 }

@@ -24,7 +24,5 @@ public class GetEmployeeData {
 		} catch (Exception e2) {
 			e2.printStackTrace();
 		}	
-		
-
 	}
 }
